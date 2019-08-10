@@ -13,7 +13,11 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'MSDN Platforms (50d54342-1eb8-4ab8-b6d1-f1a03ea3c6b4)'
+    appType: 'webAppLinux'
+    WebAppName: 'MyLifeYouChoose'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    RuntimeStack: 'PHP|7.3'
